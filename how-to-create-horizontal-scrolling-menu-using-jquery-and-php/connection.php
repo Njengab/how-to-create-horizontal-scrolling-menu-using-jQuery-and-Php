@@ -1,36 +1,26 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
+$servernme= "localhost";
+$usernme = "root";
+$pword = "";
 $dbname ="menu2";
-
 try {
-  $conn = new PDO("mysql:host=$servername;dbname=menu2", $username, $password);
+  $conn = new PDO("mysql:host=$servernme;dbname=menu2", $usernme, $pword);
   // set the PDO error mode to exception
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  echo "";
 } catch(PDOException $e) {
-  echo "Connection failed: " . $e->getMessage();
-
+  echo "no established connection: ";
 }
-
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servernme, $usernme, $pword,$dbname);
 // Check connection
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+  die("no established connection: ". $conn->connect_error);
 }
-//
-$sql = "SELECT * FROM menu_items";
+$sql = "SELECT table_data FROM menu_items";
 $result = $conn->query($sql);
-
 if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
-  
   }
 } else {
-  echo "0 results";
+  echo "no results found";
 }
-$conn->close();
-?>
